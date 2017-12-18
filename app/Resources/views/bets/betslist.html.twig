@@ -1,0 +1,56 @@
+{% extends 'bets/bets.html.twig' %}
+
+{% block betbody %}
+    <h1>List of bets</h1>
+    <p><a href="{{ path('betsedit') }}">ADD NEW BET</a></p>
+    <hr />
+    <table border="1px">
+        <thead>
+        <tr>
+            <th>Team 1</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th>Team 2</th>
+            <th>Result</th>
+            <th>Paid</th>
+            <th>Coefficient</th>
+            <th>Reward</th>
+            <th>Time</th>
+            <th>Match Start</th>
+        </thead>
+        <tbody>
+        {% for bet in betslist %}
+            {# @var choice \AppBundle\Entity\Choice #}
+            {#{% for team in com.coTeams %}#}
+            <tr>
+                <td>{{ bet.betMatch.maTeam1.getTeName() }}</td>
+                <td>   </td>
+                <td> : </td>
+                <td>   </td>
+                <td>{{ bet.betMatch.maTeam2.getTeName() }}</td>
+            <td>{{ bet.betResult }}</td>
+                <td> {{ bet.betAmount }}</td>
+            {% if  bet.betResult == "1" %}
+                <td> {{ bet.betMatch.maWinC }} </td>
+                <td> {{ bet.betAmount*bet.betMatch.maWinC }} </td>
+            {% endif %}
+            {% if  bet.betResult == "X" %}
+                <td> {{ bet.betMatch.maDrawC }} </td>
+                <td> {{ bet.betAmount*bet.betMatch.maDrawC }} </td>
+            {% endif %}
+            {% if  bet.betResult == "2" %}
+                <td> {{ bet.betMatch.maLoseC }} </td>
+                <td> {{ bet.betAmount*bet.betMatch.maLoseC }} </td>
+            {% endif %}
+            <td> {{ bet.betInserted|date('Y.m.d. H:i:s') }}</td>
+            <td> {{ bet.betMatch.MaStart |date('m.d - H:i') }}</td>
+
+            {#<td><a href="{{ path('betsshow', { 'id': com.ctId }) }}">SHOW</a></td>
+            <td><a href="{{ path('betsedit', { 'id': com.ctId}) }}">EDIT</a></td>
+            <td><a href="{{ path('betsdel', { 'id': com.ctId  }) }}">DEL</a></td>#}
+            {# {% endfor %}#}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

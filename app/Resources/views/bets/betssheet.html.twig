@@ -1,0 +1,28 @@
+{# @var choice \AppBundle\Entity\Competition #}
+
+{% extends 'bets/bets.html.twig' %}
+
+{% block betbody %}
+    <table border="1">
+        <tr><th>Bet ID:</th><td>
+                {{ bet.id }} |
+                <a href="{{ path('betslist_user', { 'matchId': bet.betMatch.getId() } ) }}">
+                    Show Matches
+                </a>
+            </td></tr>
+        <tr><th>Result:</th><td> {{ bet.betResult }} </td></tr>
+        <tr><th>User:</th><td> {{ bet.betUser }} </td></tr>
+        <tr><th>Match:</th><td> {{ bet.betMatch}} </td></tr>
+        {% if  bet.betResult == "1" %}
+        <tr><th>Coeficient:</th><td> {{ bet.betMatch.maWinC }} </td></tr>
+        {% endif %}
+        {% if  bet.betResult == "X" %}
+            <tr><th>Coeficient:</th><td> {{ bet.betMatch.maDrawC }} </td></tr>
+        {% endif %}
+        {% if  bet.betResult == "2" %}
+            <tr><th>Coeficient:</th><td> {{ bet.betMatch.maLoseC }} </td></tr>
+        {% endif %}
+    </table>
+
+    {{ dump(bet) }}
+{% endblock %}

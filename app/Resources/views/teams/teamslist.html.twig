@@ -1,0 +1,27 @@
+{% extends 'teams/teams.html.twig' %}
+
+{% block teambody %}
+    <h1>Teams</h1>
+    <p>See all <a href="{{ path('matcheslist') }}">Matches</a>.</p>
+    <hr />
+    <table border="1px">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Nationality</th>
+            <th>City</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for team in teamslist %}
+            <tr>
+                <td>{{ team.getTeName() }}</td>
+                <td>{{ team.getTeNationality() }}</td>
+                <td>{{ team.getTeAddress() }}</td>
+            </tr>
+        {% endfor %}
+        <tr><td><a href="{{ path('teamsedit') }}">ADD NEW TEAM</a></td></tr>
+        </tbody>
+
+    </table>
+{% endblock %}

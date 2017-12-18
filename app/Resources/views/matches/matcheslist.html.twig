@@ -1,0 +1,39 @@
+{% extends 'matches/matches.html.twig' %}
+
+{% block matchbody %}
+    <h1>Matches</h1>
+    <p>See all <a href="{{ path('teamslist') }}">Teams</a>.</p>
+    <hr />
+    <table border="1px">
+        <thead>
+        <tr>
+            <th>HOME</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th>AWAY</th>
+            <th>1</th>
+            <th>X</th>
+            <th>2</th>
+            <th>GAME START</th>
+            <th> </th>
+        </tr>
+        {% for mat in matcheslist %}
+        <tr>
+            <td> {{ mat.maTeam1.getTeName() }}</td>
+            <td> </td>
+            <td>:</td>
+            <td> </td>
+            <td> {{ mat.maTeam2.getTeName() }}</td>
+            <td> {{ mat.maWinC }} </td>
+            <td> {{ mat.maDrawC }} </td>
+            <td> {{ mat.maLoseC }} </td>
+            <td> {{ mat.maStart|date('m.d - H:i') }}</td>
+            <td class="bet"> <a href="{{ path('betsedit', { 'id': mat.id }) }}">BET</a></td> {#, { 'id': mat.id}#}
+        </tr>
+        {% endfor %}
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+{% endblock %}

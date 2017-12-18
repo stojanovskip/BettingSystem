@@ -1,0 +1,9 @@
+{% extends 'login/home.html.twig' %}
+
+{% block forumcontent %}
+    {% form_theme form 'form_table_layout.html.twig'  %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    Not registered? Click <a href="{{ path('register') }}">here</a>
+{% endblock %}

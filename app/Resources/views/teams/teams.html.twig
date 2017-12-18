@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Teams
+{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('bundles/base.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    {% if app.session.get('user') is not empty %}
+        <h2>
+            User: {{ app.session.get('user') }}<br />
+        </h2>
+        <p><a href="{{ path('logout') }}">LOG OUT</a></p>
+    {% else %}
+        <p><a href="{{ path('homepage') }}">LOGIN</a></p>
+    {% endif %}
+    {% set notices = app.session.flashbag.get('notice') %}
+    {% for flash_message in notices %}
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2>{{ flash_message|nl2br }}</h2>
+                <a class="close" href="{{ path('teamslist') }}">&times;</a>
+            </div>
+        </div>
+    {% endfor %}
+    {% if notices is not empty %}
+        <hr />
+    {% endif %}
+
+    <hr />
+    {% block teambody %}
+    {% endblock %}
+{% endblock %}

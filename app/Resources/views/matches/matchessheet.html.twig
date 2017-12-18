@@ -1,0 +1,19 @@
+{# @var choice \AppBundle\Entity\Competition #}
+
+{% extends 'matches/matches.html.twig' %}
+
+{% block matchbody %}
+    <table border="1">
+        <tr><th>Match:</th><td>
+                {{ match }} |
+                <a href="{{ path('matcheslist_team', { 'teamId': 1 } ) }}">
+                    Show Teams
+                </a>
+            </td></tr>
+        <tr><th>1:</th><td> {{ match.maWinC }} </td></tr>
+        <tr><th>X:</th><td> {{ match.maDrawC }} </td></tr>
+        <tr><th>2:</th><td> {{ match.maLoseC }} </td></tr>
+       </table>
+
+    {{ dump(match) }}
+{% endblock %}

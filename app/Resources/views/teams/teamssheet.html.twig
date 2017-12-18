@@ -1,0 +1,25 @@
+{# @var choice \AppBundle\Entity\Competition #}
+
+{% extends 'teams/teams.html.twig' %}
+
+{% block teambody %}
+    <table border="1">
+        <tr><th>Visible:</th><td>
+                {% if team.teVisible %}
+                    YES
+                {% else %}
+                    NO
+                {% endif %}
+            </td></tr>
+        <tr><th>Name:</th><td>
+                {{ team.getTeName() }}
+                <a href="{{ path('teamslist_competition', { 'competitionId': team.getId() } ) }}">
+                    Show Competitions
+                </a>
+            </td></tr>
+        <tr><th>Year:</th><td> {{ team.getTeName() }} </td></tr>
+        <tr><th>Gender:</th><td> {{ team.getTeNationality() }} </td></tr>
+        <tr><th>Type:</th><td> {{ team.getTeAddress()}} </td></tr>
+       </table>
+    {{ dump(team) }}
+{% endblock %}

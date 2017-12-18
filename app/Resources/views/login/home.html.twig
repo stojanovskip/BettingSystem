@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Betting System
+{% endblock %}
+
+{% block body %}
+    {% set notices = app.session.flashbag.get('notice') %}
+    {% for flash_message in notices %}
+        <div class="flash-notice">
+            {{ flash_message|nl2br }}
+        </div>
+    {% endfor %}
+    {% if notices is not empty %}
+        <hr />
+    {% endif %}
+
+    {% if app.session.get('user') is not empty %}
+        <p>
+            Logged in as {{ app.session.get('user') }}<br />
+            <a href="{{ path('logout') }}">LOG OUT</a>
+        </p>
+        <hr />
+    {% endif %}
+
+
+    {% block forumcontent %}
+    {% endblock %}
+{% endblock %}

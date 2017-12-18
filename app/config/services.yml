@@ -1,0 +1,50 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    app.tblprefix_subscriber:
+        class: AppBundle\Event\TablePrefixSubscriber
+        arguments: [ "%pageprefix%" ]
+        tags:
+            - { name: doctrine.event_listener, event: loadClassMetadata }
+    app.choicefactory:
+        class: AppBundle\Service\ChoiceServiceFactory
+        arguments: [ "@doctrine.orm.entity_manager", "@form.factory", "@request_stack"]
+    app.choiceservice:
+        class: AppBundle\Service\IChoiceService
+        factory: [ "@app.choicefactory", getService ]
+    app.competitionfactory:
+        class: AppBundle\Service\CompetitionServiceFactory
+        arguments: [ "@doctrine.orm.entity_manager", "@form.factory", "@request_stack"]
+    app.competitionservice:
+        class: AppBundle\Service\ICompetitionService
+        factory: [ "@app.competitionfactory", getService ]
+    app.teamfactory:
+        class: AppBundle\Service\TeamServiceFactory
+        arguments: [ "@doctrine.orm.entity_manager", "@form.factory", "@request_stack"]
+    app.teamservice:
+        class: AppBundle\Service\ITeamService
+        factory: [ "@app.teamfactory", getService ]
+    app.betfactory:
+            class: AppBundle\Service\BetServiceFactory
+            arguments: [ "@doctrine.orm.entity_manager", "@form.factory", "@request_stack"]
+    app.betservice:
+        class: AppBundle\Service\IBetService
+        factory: [ "@app.betfactory", getService ]
+    app.matchfactory:
+            class: AppBundle\Service\MatchServiceFactory
+            arguments: [ "@doctrine.orm.entity_manager", "@form.factory", "@request_stack"]
+    app.matchservice:
+        class: AppBundle\Service\IMatchService
+        factory: [ "@app.matchfactory", getService ]
+    app.userfactory:
+            class: AppBundle\Service\UserServiceFactory
+            arguments: [ "@doctrine.orm.entity_manager", "@form.factory", "@request_stack"]
+    app.userservice:
+        class: AppBundle\Service\IUserService
+        factory: [ "@app.userfactory", getService ]
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

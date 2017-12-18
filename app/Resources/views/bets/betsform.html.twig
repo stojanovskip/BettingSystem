@@ -1,0 +1,8 @@
+{% extends 'bets/bets.html.twig' %}
+
+{% block betbody %}
+    {% form_theme form 'form_table_layout.html.twig'  %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

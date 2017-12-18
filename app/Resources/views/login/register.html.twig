@@ -1,0 +1,9 @@
+{% extends 'forum/forum.html.twig' %}
+
+{% block forumcontent %}
+    {% form_theme form 'form_table_layout.html.twig'  %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    Login <a href="{{ path('homepage') }}">here</a>
+{% endblock %}
