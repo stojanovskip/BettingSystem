@@ -21,12 +21,6 @@ interface IBetService
     public function getBets();
 
     /**
-     * @param $betId int
-     * @return User[]
-     */
-    public function getBetUsers($betId);
-
-    /**
      * @param $userId int
      * @return Bet[]
      */

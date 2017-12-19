@@ -6,13 +6,8 @@ use AppBundle\Entity\Match;
 use AppBundle\Entity\Team;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -105,10 +100,6 @@ class MatchService extends CrudService implements  IMatchService {
             'choice_label' => 'te_name',
             'choice_value' => 'id'
         ));
-//        $form->add("bet_result", ChoiceType::class, array("choices"=>array("1"=>"1", "X"=>"X","2"=>"2")));
-
-  //      $form->add("bet_amount", NumberType::class, array('label'=>'$'));
-        // TextareaType::class, NumberType::class
         $form->add("save", SubmitType::class, array('label'=>'Save match'));
 
         return $form->getForm();

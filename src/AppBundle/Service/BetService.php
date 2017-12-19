@@ -112,15 +112,6 @@ class BetService extends CrudService implements  IBetService
     }
 
     /**
-     * @param $betId int
-     * @return User[]
-     */
-    public function getBetUsers($betId)
-    {
-        // TODO: Implement getBetUsers() method.
-    }
-
-    /**
      * @param $userId int
      * @return Bet[]
      */
